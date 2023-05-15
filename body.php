@@ -29,7 +29,7 @@
                   <option value="BBD">BBD</option>
                   <option value="Barabanki">Barabanki</option>
                   <option value="Faizabad">Faizabad</option>
-                  <option value="Basti">Basti</option>
+                  
                   <option value="Gorakhpur">Gorakhpur</option> -->
                 </select>
             </div>
