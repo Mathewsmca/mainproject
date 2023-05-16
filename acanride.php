@@ -52,10 +52,10 @@ if(isset($_GET['action']))
   <label for="filter">FILTER BY CAB</label>
   <select name="cfil" id="cfil">
   <option value="" selected>NONE</option>
-  <option value="CedMini">CedMini</option>
-  <option value="CedMicro">CedMicro</option>
-  <option value="CedRoyal">CedRoyal</option>
-  <option value="CedSUV">CedSUV</option>
+  <option value="CedMini">Mini</option>
+  <option value="CedMicro">Micro</option>
+  <option value="CedRoyal">Royal</option>
+  <option value="CedSUV">SUV</option>
   </select>
   </div>
   </div>
