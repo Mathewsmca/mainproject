@@ -13,7 +13,7 @@ include('adminwrk.php');
  ?>
 <header>
       <nav  class="navbar navbar-expand-lg">
-          <a class="navbar-brand nos" href="#">Ced<span class="gree">Cab</span></a>
+          <a class="navbar-brand nos" href="#">Go<span class="gree">Cab</span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span><i class="fas fa-bars logo text-dark"></i></span>
             </button>
@@ -86,10 +86,10 @@ include('ussidebar.php');
   <label for="filter">FILTER BY CAB</label>
   <select name="cfil" id="cfil">
   <option value="" selected>NONE</option>
-  <option value="CedMini">CedMini</option>
-  <option value="CedMicro">CedMicro</option>
-  <option value="CedRoyal">CedRoyal</option>
-  <option value="CedSUV">CedSUV</option>
+  <option value="Mini">Mini</option>
+  <option value="Micro">Micro</option>
+  <option value="Royal">Royal</option>
+  <option value="SUV">SUV</option>
   </select>
   </div>
 </div>
