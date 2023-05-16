@@ -27,7 +27,6 @@
                   <!-- <option value="Charbagh">Charbagh</option>
                   <option value="Indira Nagar">Indira Nagar</option>
                   <option value="BBD">BBD</option>
-                  <option value="Barabanki">Barabanki</option>
                   <option value="Faizabad">Faizabad</option>
                   
                   <option value="Gorakhpur">Gorakhpur</option> -->
