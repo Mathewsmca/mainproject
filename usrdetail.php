@@ -78,10 +78,10 @@ include('adsidebar.php');
   <label for="filter">FILTER BY CAB</label>
   <select name="cfil" id="cfil">
   <option value="" selected>NONE</option>
-  <option value="CedMini">CedMini</option>
-  <option value="CedMicro">CedMicro</option>
-  <option value="CedRoyal">CedRoyal</option>
-  <option value="CedSUV">CedSUV</option>
+  <option value="Mini">Mini</option>
+  <option value="Micro">Micro</option>
+  <option value="Royal">Royal</option>
+  <option value="SUV">SUV</option>
   </select>
   </div>
 </div>
