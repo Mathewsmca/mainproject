@@ -13,7 +13,7 @@ include('adminwrk.php');
  ?>
 <header>
       <nav  class="navbar navbar-expand-lg">
-          <a class="navbar-brand nos" href="#">Ced<span class="gree">Cab</span></a>
+          <a class="navbar-brand nos" href="#">Go<span class="gree">Cab</span></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span><i class="fas fa-bars logo text-dark"></i></span>
             </button>
@@ -75,7 +75,7 @@ include('ussidebar.php');
                     <table>
                         <tr>
                             <td class="title">
-                                <a style="width:100%; max-width:300px;">Ced<span class="gree">Cab</span>
+                                <a style="width:100%; max-width:300px;">Go<span class="gree">Cab</span>
                             </td>
                             
                             <td>

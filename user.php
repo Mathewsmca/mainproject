@@ -31,7 +31,8 @@ class user{
              if ($result->num_rows > 0) {
  
                  while($row = $result->fetch_assoc()){
-                     
+                    if ($row['code']=='') {
+                  
                      if ($row['is_admin']==1){
 
                      $_SESSION['userdata'] = array('username'=>$row['name'],'user_id'=>$row['user_id'],'is_admin'=>$row['is_admin']);
@@ -57,11 +58,8 @@ class user{
                             $id = $_SESSION['userdata']['user_id'];
                             $user = new user();
                             $dbcon = new dbcon();
-                            $rideids=generateRandomString();
-                            $save=$user->book($pickup,$drop,$cabtype,$dist,$far,$lugg,$datetime,$id,$rideids,$dbcon->conn);
-                            $sql="INSERT INTO `tbl_booking`( `userid`, `frm`, `tos`, `types`, `piksts`, `status`,`rideid`) 
-                            VALUES ('$id','$pickup','$drop','$cabtype','1','1','$rideids')";
-                            dbset($sql,1);
+                            $save=$user->book($pickup,$drop,$cabtype,$dist,$far,$lugg,$datetime,$id,$dbcon->conn);
+                            
 
                             echo '<script>alert("Your Ride request from '.$pickup.' to '.$drop.' BY '.$cabtype.' has been sent");
                             window.location.href = "dash.php";</script>';
@@ -72,6 +70,15 @@ class user{
                         
                        
                      }
+
+
+                   
+                       
+                     } 
+                  else {
+                        
+                         echo '<p class="bg-danger text-center">First verify your account and try again.</p>';
+                  }
                      
                  } 
              }
@@ -87,20 +94,7 @@ class user{
          
     }
 
-  
-   
-   
-    function generateRandomString($length = 10) {
-       $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-       $charactersLength = strlen($characters);
-       $randomString = '';
-       for ($i = 0; $i < $length; $i++) {
-           $randomString .= $characters[random_int(0, $charactersLength - 1)];
-       }
-       return $randomString;
-   }
-
-    function register($username,$password,$password2,$email,$mobile,$datetime,$conn)
+    function register($username,$password,$password2,$email,$mobile,$datetime,$code,$conn)
      {
         $message = '';
         $errors=array();
@@ -125,11 +119,10 @@ class user{
         {
             setcookie("email", $email, time() + 60 * 60 * 24);
             $password = md5($password);
-            $sql = "INSERT INTO user(`name`, `password`, `user_name`,`mobile`,`dateofsignup`,`isblock`,`is_admin`) VALUES('".$username."', '".$password."', '".$email."', '".$mobile."', '".$datetime."',0, 0)";
+            $sql = "INSERT INTO user(`name`, `password`, `user_name`,`mobile`,`dateofsignup`,`isblock`,`is_admin`,`code`) VALUES('".$username."', '".$password."', '".$email."', '".$mobile."', '".$datetime."',0,0,'".$code."')";
 
             if ($conn->query($sql) === true) {
-                echo '<script>alert("Registration Successful, Going to Login Page");
-                     window.location.href = "login.php";</script>';
+                echo '<p class="bg-success text-center">We have send a verification link on your email address.</p>';
             }
              else {
                // $errors[] = array('input'=>'form','msg'=>$conn->errors);
@@ -216,7 +209,7 @@ class user{
                 echo '<script>alert("Profile Updated Successfully");
                 window.location.href = "usrprofile.php"</script>';
                 
-               // echo '<p class="bg-success text-center">Profile Edited Successful</p>';
+               echo '<p class="bg-success text-center">Profile Edited Successful</p>';
             }
              else {
                echo '<p class="bg-danger text-center">Something Went wrong</p>';
@@ -367,10 +360,9 @@ class user{
         return $appr;
     }
 
-    function book($pickup,$drop,$cabtype,$dist,$far,$lugg,$datetime,$id,$rdid,$conn)
+    function book($pickup,$drop,$cabtype,$dist,$far,$lugg,$datetime,$id,$conn)
     {
-        echo $sql = "INSERT INTO ride(`ride_date`,`from_distance`,`to_distance`,`cab_type`,`total_distance`,`luggage`,`total_fare`,`status`,`customer_user_id`,`rideid`) 
-        VALUES('".$datetime."','".$pickup."','".$drop."','".$cabtype."','".$dist."','".$lugg."','".$far."',1,'".$id."','".$rdid."')";
+        echo $sql = "INSERT INTO ride(`ride_date`,`from_distance`,`to_distance`,`cab_type`,`total_distance`,`luggage`,`total_fare`,`status`,`customer_user_id`) VALUES('".$datetime."','".$pickup."','".$drop."','".$cabtype."','".$dist."','".$lugg."','".$far."',1,'".$id."')";
         
         if ($conn->query($sql) === TRUE)
             {
@@ -381,7 +373,6 @@ class user{
                 $conn->error;
             }
     }
-
 }
 
 ?>

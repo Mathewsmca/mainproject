@@ -13,7 +13,7 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-include('dbcon.php');
+include('./config.php');
 $msg = "";
 
 if (isset($_POST['submit'])) {
@@ -27,32 +27,34 @@ if (isset($_POST['submit'])) {
             echo "<div style='display: none;'>";
             //Create an instance; passing true enables exceptions
             $mail = new PHPMailer(true);
+             try {
+          //Server settings
+          // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+          $mail->isSMTP();                                            //Send using SMTP
+          $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+          $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+          $mail->Username   = 'cabbooking05@gmail.com';                      //SMTP username
+          $mail->Password   = 'khmypqqamoduenue';                               //SMTP password
+          $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+          $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
+  
+          //Recipients
+          $mail->setFrom('cabbooking05@gmail.com');
+          $mail->addAddress($email);
+  
+          //Content
+          $mail->isHTML(true);                                  //Set email format to HTML
+          $mail->Subject = 'no reply';
+          $mail->Body    = 'Here is the verification link <b><a href="http://localhost/gocab/changepassword.php?reset='.$code.'">http://localhost/gocab/changepassword.php?reset='.$code.'</a></b>';  
+          $mail->send();
+          echo 'Message has been sent';
+      } catch (Exception $e) {
+          echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+      }
+          
 
-            try {
-                //Server settings
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-                $mail->isSMTP();                                            //Send using SMTP
-                $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'cabbooking05@gmail.com';                     //SMTP username
-                $mail->Password   = 'hvyjmxvfpojyotdv';                                         //SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-                $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS
 
-                //Recipients
-                $mail->setFrom('cabbooking05@gmail.com');
-                $mail->addAddress($email);
 
-                //Content
-                $mail->isHTML(true);                                  //Set email format to HTML
-                $mail->Subject = 'no reply';
-                $mail->Body    = 'Here is the verification link <b><a href="http://localhost/gocab/changepassword.php?reset='.$code.'">http://localhost/gocab/changepassword.php?reset='.$code.'</a></b>';
-
-                $mail->send();
-                echo 'Message has been sent';
-            } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-            }
             echo "</div>";        
             $msg = "<div class='alert alert-info'>We've send a verification link on your email address.</div>";
         }
@@ -60,6 +62,21 @@ if (isset($_POST['submit'])) {
         $msg = "<div class='alert alert-danger'>$email - This email address do not found.</div>";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
 

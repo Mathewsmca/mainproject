@@ -2,10 +2,10 @@
 
 function dbset($sql,$options)
 {
-    $con=mysqli_connect("localhost","root","","cabne");
-    if($con)
+    $conn=mysqli_connect("localhost","root","","cabne");
+    if($conn)
     {
-        $qry=mysqli_query($con,$sql);
+        $qry=mysqli_query($conn,$sql);
         if($options==1)
         {
             return $qry;
@@ -30,7 +30,7 @@ function dbset($sql,$options)
         }
         else
         {
-            return mysqli_error($con);
+            return mysqli_error($conn);
         }
         
     }

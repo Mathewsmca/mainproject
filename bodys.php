@@ -66,7 +66,7 @@ if(isset($_SESSION['book'])){
         <div class="form-group  row feilds ">
           <label class="col-sm-3" for="luggage">LUGGAGE</label>
           <input type="text"  class="form-control-plaintext col-sm-9 arrow" maxlength="2" id="lugg" placeholder="Enter weight in KG" <?php if(isset($l)){ echo "value= ".$l; } ?> >
-          <p id="err" class="text-danger h6">*Luggage is not available in CedMicro</p>
+          <p id="err" class="text-danger h6">*Luggage is not available in Micro</p>
         </div>
         <p id="nu" class="bg-danger text-center">Enter Numeric Weight Value</p>
         <p id="fare" class="green text-center"></p>

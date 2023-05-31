@@ -1,6 +1,6 @@
 <?php 
 $msg="";
-include('dbcon.php');
+include('config.php');
 if (isset($_GET['reset'])) {
     if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user WHERE code='{$_GET['reset']}'")) > 0) {
         if (isset($_POST['submit'])) {
